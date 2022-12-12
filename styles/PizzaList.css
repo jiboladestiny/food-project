@@ -1,0 +1,59 @@
+.containers {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.titles {
+  text-align: center;
+  font-size: 30px;
+}
+
+.descs {
+  font-size: 17px;
+  color: #444;
+  text-align: center;
+}
+.tab-content-wrapper{
+  margin-top: 2.5rem;
+}
+
+.tab-wrapper button {
+  background: rgb(0, 0, 0, 0.4) !important ;
+  color: white !important;
+  padding: 0.4rem 1rem;
+  font-size: 16px;
+  border-radius: 0.3rem;
+}
+
+.tab-wrapper button.active {
+  background: black !important ;
+  color: white !important;
+}
+
+@media screen and (max-width: 576px) {
+
+
+  .tab-wrapper {
+    overflow-x: scroll;
+    display: flex;
+  }
+  .tab-wrapper button {
+    min-width: 150px;
+  }
+}
+
+/* .nav-pills .nav-item:not(:last-child) {
+  margin-right: 0.8rem;
+}
+.nav-pills .nav-link {
+  background: rgb(0, 0, 0, 0.4) !important ;
+  color: white !important;
+  padding: 0.4rem 1rem;
+  font-size: 16px;
+  border-radius: 0.3rem;
+}
+
+.nav-pills .nav-link.active {
+  background: black !important ;
+  color: white !important;
+} */

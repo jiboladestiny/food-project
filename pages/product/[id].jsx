@@ -42,33 +42,23 @@ const Product = ({ pizza }) => {
 
   return (
     <>
-      <Head>
-        <title>Pizza Restaurant in Newyork</title>
-        <meta name="description" content="Best pizza shop in town" />
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-          rel="stylesheet"
-        />
-      </Head>
+    
 
       <div className="container">
         <Basket />
+
         <div className="productContainer row">
           <div className="col-md-6">
             <div className="left">
               <div className="imgContainer">
-                <img
-                  src={pizza.img}
-                  className="singleproduct-image"
-                  alt=""
-                />
+                <img src={pizza.img} className="singleproduct-image" alt="" />
+              </div>
+            </div>
+            <div className="d-flex justify-content-center">
+              <div className="button-cont">
+                <div className="minus">-</div>
+                <div>1</div>
+                <div className="plus">+</div>
               </div>
             </div>
           </div>
@@ -76,34 +66,31 @@ const Product = ({ pizza }) => {
           <div className="col-md-6 d-flex align-items-center">
             <div className="right">
               <div className="rightContent">
-                <h1 className="title">{pizza.title}</h1>
+                <h2 className="title">{pizza.title}</h2>
                 <span className="price">${price}</span>
-                <p className="desc">{pizza.desc}</p>
-                <h4 className="choose mb-3">Package size?</h4>
+                <p className="product-desc">{pizza.desc}</p>
+                <h5 className="choose mb-3">size?</h5>
                 <div className="sizes">
                   <div
-                    className={size === 0 ? "size active me-5" : "size me-5"}
+                    className={size === 0 ? "size active me-3" : "size me-3"}
                     onClick={() => handleSize(0)}
                   >
-                    <Image src="/img/small.png" layout="fill" alt="" />
-                    <span className="number">Small</span>
+                    S
                   </div>
                   <div
-                    className={size === 1 ? "size active me-5" : "size me-5"}
+                    className={size === 1 ? "size active me-3" : "size me-3"}
                     onClick={() => handleSize(1)}
                   >
-                    <Image src="/img/medium.png" layout="fill" alt="" />
-                    <span className="number">Medium</span>
+                    M
                   </div>
                   <div
-                    className={size === 2 ? "size active me-5" : "size me-5"}
+                    className={size === 2 ? "size active me-3" : "size me-3"}
                     onClick={() => handleSize(2)}
                   >
-                    <Image src="/img/newlarge.png" layout="fill" alt="" />
-                    <span className="number">Large</span>
+                    L
                   </div>
                 </div>
-                <h4 className="choose mt-3">Additional sauce</h4>
+                <h5 className="choose mt-3">Additional sauce</h5>
                 <div className="ingredents">
                   {pizza.extraOptions.map((option) => (
                     <div className="foodOption mb-1" key={option._id}>
@@ -119,12 +106,14 @@ const Product = ({ pizza }) => {
                   ))}
                 </div>
                 <div className="add mt-3">
-                  <input
-                    onChange={(e) => setQuantity(e.target.value)}
-                    type="number"
-                    defaultValue={1}
-                    className="quantity"
-                  />
+              
+                  <div className="">
+                    <div className="button-cont-desktop">
+                      <div className="minus">-</div>
+                      <div>1</div>
+                      <div className="plus">+</div>
+                    </div>
+                  </div>
                   <button className="button btn" onClick={handleClick}>
                     Place Order
                   </button>

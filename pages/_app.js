@@ -1,12 +1,13 @@
 import Layout from "../components/Layout";
 import "../styles/globals.css";
-import "../styles/PizzaList.css"
+import "../styles/PizzaList.css";
 import "../styles/PizzaCard.css";
 import "../styles/Featured.css";
 import "../styles/Navbar.css";
 import "../styles/Footer.css";
 import "../styles/Basket.css";
 import "../styles/Product.css";
+// import "../styles/Cart.css";
 import store from "../redux/store";
 import { Provider } from "react-redux";
 import Script from "next/script";

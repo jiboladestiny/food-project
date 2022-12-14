@@ -52,6 +52,7 @@ const Cart = () => {
 
     return (
       <>
+      
         {showSpinner && isPending && <div className="spinner" />}
         <PayPalButtons
           style={style}

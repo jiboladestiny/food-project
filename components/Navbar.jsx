@@ -8,6 +8,8 @@ const Navbar = () => {
 
   const router = useRouter();
   const pathname = router.pathname
+
+  console.log(pathname)
   return (
     <nav
       className={

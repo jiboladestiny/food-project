@@ -1,47 +1,62 @@
 import { useState } from "react";
-import styles from "../styles/OrderDetail.module.css";
 
-const OrderDetail = ({ total, createOrder }) => {
+const OrderDetail = ({ total, createOrder,closeOrder }) => {
   const [customer, setCustomer] = useState("");
   const [address, setAddress] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [showorder, setShoworder] = useState("");
+
 
   const handleClick = () => {
     createOrder({ customer, address, total, method: 0 });
   };
 
+  const closeClick= () =>{
+    closeOrder()
+  }
+
   return (
-    <div className={styles.container}>
-      <div className={styles.wrapper}>
-        <h1 className={styles.title}>You will pay $12 after delivery.</h1>
-        <div className={styles.item}>
-          <label className={styles.label}>Name Surname</label>
+    <div className="order-container">
+      <div className="order-wrapper">
+        <span className="cancel-btn" onClick={closeClick}>
+          <i className="bx bx-x"></i>
+        </span>
+
+        <h2 className="order-title">Order details</h2>
+        <div className="order-item">
+          <label className="order-label">Name</label>
           <input
-            placeholder="John Doe"
+            placeholder="Destiny"
             type="text"
-            className={styles.input}
+            className="order-input form-control"
             onChange={(e) => setCustomer(e.target.value)}
           />
         </div>
-        <div className={styles.item}>
-          <label className={styles.label}>Phone Number</label>
+        <div className="order-item">
+          <label className="order-label">Telephone No:</label>
           <input
             type="text"
-            placeholder="+1 234 567 89"
-            className={styles.input}
+            placeholder="+234 873 455"
+            className="order-input form-control"
+            onChange={(e) => setTelephone(e.target.value)}
           />
         </div>
-        <div className={styles.item}>
-          <label className={styles.label}>Address</label>
+        <div className="order-item">
+          <label className="order-label">Address</label>
           <textarea
             rows={5}
-            placeholder="Elton St. 505 NY"
+            placeholder="No 44, Elon musk street"
             type="text"
-            className={styles.textarea}
+            className="order-textarea form-control"
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
-        <button className={styles.button} onClick={handleClick}>
-          Order
+        <button
+          className="btn btn-secondary"
+          onClick={handleClick}
+          disabled={customer === "" && address === "" && telephone === ""}
+        >
+          Proceed
         </button>
       </div>
     </div>

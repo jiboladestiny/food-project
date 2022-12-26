@@ -42,8 +42,6 @@ const Product = ({ pizza }) => {
 
   return (
     <>
-    
-
       <div className="container">
         <Basket />
 
@@ -56,9 +54,27 @@ const Product = ({ pizza }) => {
             </div>
             <div className="d-flex justify-content-center">
               <div className="button-cont">
-                <div className="minus">-</div>
-                <div>1</div>
-                <div className="plus">+</div>
+                <div
+                  className="minus"
+                  onClick={() => {
+                    setQuantity(function (prevCount) {
+                      if (prevCount > 0) {
+                        return (prevCount -= 1);
+                      } else {
+                        return (prevCount = 0);
+                      }
+                    });
+                  }}
+                >
+                  -
+                </div>
+                <div className="quantity-name">{quantity}</div>
+                <div
+                  className="plus"
+                  onClick={() => setQuantity((quantity) => quantity + 1)}
+                >
+                  +
+                </div>
               </div>
             </div>
           </div>
@@ -106,15 +122,32 @@ const Product = ({ pizza }) => {
                   ))}
                 </div>
                 <div className="add mt-3">
-              
                   <div className="">
                     <div className="button-cont-desktop">
-                      <div className="minus">-</div>
-                      <div>1</div>
-                      <div className="plus">+</div>
+                      <div
+                        className="minus"
+                        onClick={() => {
+                          setQuantity(function (prevCount) {
+                            if (prevCount > 0) {
+                              return (prevCount -= 1);
+                            } else {
+                              return (prevCount = 0);
+                            }
+                          });
+                        }}
+                      >
+                        -
+                      </div>
+                      <div className="quantity-name">{quantity}</div>
+                      <div
+                        className="plus"
+                        onClick={() => setQuantity((quantity) => quantity + 1)}
+                      >
+                        +
+                      </div>
                     </div>
                   </div>
-                  <button className="button btn" onClick={handleClick}>
+                  <button className="product-button btn" onClick={handleClick}>
                     Place Order
                   </button>
                 </div>

@@ -1,0 +1,90 @@
+.order-status-cont {
+  height: 68vh;
+}
+
+
+.mobile-order {
+  display: none;
+}
+
+.invalid-id{
+    background-color: rgb(255, 0, 0,0.65);
+    width: auto;
+    color: whitesmoke;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 0.5rem;
+
+}
+@media screen and (max-width: 600px) {
+    #order{
+        display: none;
+    }
+
+
+
+  .mobile-order {
+    display: flex;
+    margin-top: 3rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.7rem;
+    border-radius: 0.6rem;
+    /* color: white; */
+  }
+
+  /* .left-order{
+    margin-top: 0.4rem;
+  } */
+
+  .name-order{
+    font-size: 18px;
+    color: #d1411e;
+  }
+
+
+    .address-order{
+    font-size: 16px;
+    font-style: italic;
+  }
+
+ 
+
+}
+
+
+
+
+
+.lds-hourglass {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-hourglass:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-hourglass 1.2s infinite;
+}
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
+}

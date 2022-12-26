@@ -12,7 +12,9 @@ const Status = ({ order }) => {
   const check = async () => {
     setStatus(0);
     try {
-      const res = await axios.get(`http://localhost:3000/api/orders/${code}`);
+      const res = await axios.get(
+        `https://food-project-ruddy.vercel.app/orders/${code}`
+      );
       setStatusDetail(res.data);
 
       setStatus(1);
@@ -128,7 +130,9 @@ const Status = ({ order }) => {
 };
 
 export const getServerSideProps = async () => {
-  const res = await axios.get(`http://localhost:3000/api/orders`);
+  const res = await axios.get(
+    `https://food-project-ruddy.vercel.app/api/orders`
+  );
   return {
     props: { order: res.data },
   };

@@ -10,6 +10,7 @@ import "../styles/Product.css";
 import "../styles/Cart.css";
 import "../styles/OrderDetail.css";
 import "../styles/Orderstatus.css";
+import "../styles/Tab.css";
 // import "../styles/Cart.css";
 import store from "../redux/store";
 import { Provider } from "react-redux";

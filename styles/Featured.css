@@ -59,10 +59,10 @@
 
 @media (max-width: 576px) {
   .intro {
-  height: 80vh;
+  height: 60vh;
 }
   .intro .content .first-head {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 500;
   color: white;
 }

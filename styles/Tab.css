@@ -1,0 +1,25 @@
+.mobile-tab {
+  position: fixed;
+  bottom: -1rem;
+  width: 98%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 0.2rem;
+  padding: 0.65rem;
+}
+
+
+.mobile-tab .btn{
+    background-color: gray;
+    color: white;
+}
+
+
+.mobile-tab .btn.active{
+    background-color: rgb(0, 0, 0,0.7);
+    color: white;
+}
+

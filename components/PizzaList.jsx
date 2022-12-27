@@ -18,15 +18,18 @@ const PizzaList = ({ pizzaList }) => {
   ));
   return (
     <div className="containers container">
-      <div className="row justify-content-center mb-4">
-        <div className="col-md-6">
+      <div className="row justify-content-center mb-5">
           <h1 className="titles mb-3">WELOCME TO FOODIE</h1>
-          <p className="descs">
-            Choose from ranges of food and dishes below, if you cannot find your
-            preffered choice do not panic. Make your direct order for your
-            custom dish.
-          </p>
-        </div>
+          <div className="col-md-6">
+          <img src="/public/img/cart.png" width="100" height="100" alt="" />
+          </div>
+          <div className="col-md-6">
+            <p className="descs">
+              Choose from ranges of food and dishes below, if you cannot find
+              your preffered choice do not panic. Make your direct order for
+              your custom dish.
+            </p>
+          </div>
       </div>
 
       <div className="food-wrapper">
@@ -44,7 +47,6 @@ const PizzaList = ({ pizzaList }) => {
               </div>
             </div>
           )}
-                          
         </div>
       </div>
     </div>

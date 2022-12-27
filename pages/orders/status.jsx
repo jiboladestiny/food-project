@@ -12,9 +12,7 @@ const Status = ({ order }) => {
   const check = async () => {
     setStatus(0);
     try {
-      const res = await axios.get(
-        `https://food-project-ruddy.vercel.app/orders/${code}`
-      );
+      const res = await axios.get(`http://localhost:3000/api/orders/${code}`);
       setStatusDetail(res.data);
 
       setStatus(1);

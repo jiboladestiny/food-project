@@ -119,6 +119,7 @@
 .empty-cart{
   background-color: whitesmoke;
   width: 400px;
+  max-width: 100%;
   text-align: center;
   padding: 1.5rem;
   font-size: 19px;

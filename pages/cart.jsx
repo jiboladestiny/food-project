@@ -10,7 +10,6 @@ import Success from "../components/Success";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  
   const [open, setOpen] = useState(false);
   const [cash, setCash] = useState(false);
   const [success, setSuccess] = useState(false);

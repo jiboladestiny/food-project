@@ -7,19 +7,31 @@ const Status = ({ pizzaList }) => {
   const [status, setStatus] = useState(0);
   const [statusdetail, setStatusDetail] = useState();
 
-  const check = async () => {
-    setStatus(0);
-    try {
-      const res = await axios.get(
-        `http://food-project-ruddy.vercel.app/api/orders/${code}`
-      );
-      setStatusDetail(res.data);
-
+  const check = () => {
+    const order = pizzaList.filter((item) => {
+      return item._id === code;
+    });
+    setStatusDetail(order[0]);
+    console.log(order[0])
+    if (order.length > 0) {
       setStatus(1);
-    } catch (error) {
+    } else {
       setStatus(2);
-      console.log(error);
     }
+
+    // setStatus(0);
+    // try {
+    //   const res = await axios.get(
+    //     `http://food-project-ruddy.vercel.app/api/orders/${code}`
+    //   );
+    //   console.log(res.data)
+    //   setStatusDetail(res.data);
+
+    //   setStatus(1);
+    // } catch (error) {
+    //   setStatus(2);
+    //   console.log(error);
+    // }
   };
 
   return (
@@ -70,7 +82,9 @@ const Status = ({ pizzaList }) => {
                         </span>
                       </td>
                       <td>
-                        <span className="cart-price">{statusdetail.total}</span>
+                        <span className="cart-price">
+                          &#8358;{statusdetail.total}
+                        </span>
                       </td>
                       <td>
                         <span className="cart-price">
@@ -100,7 +114,7 @@ const Status = ({ pizzaList }) => {
                   <h5 className="address-order">{statusdetail.address}</h5>
                 </div>
                 <div>
-                  <h5 className="total-order">{statusdetail.total}</h5>
+                  <h5 className="total-order">&#8358;{statusdetail.total}</h5>
                   {statusdetail.status === 0 && (
                     <button className="btn d-flex align-items-center btn-secondary btn-sm">
                       <span className="me-1">Preparing</span>{" "}
@@ -133,11 +147,11 @@ const Status = ({ pizzaList }) => {
 
 export const getServerSideProps = async () => {
   const res = await axios.get(
-    "http://food-project-ruddy.vercel.app/api/products"
+    "http://food-project-ruddy.vercel.app/api/orders"
   );
   return {
     props: {
-      pizzaList: res.data
+      pizzaList: res.data,
     },
   };
 };

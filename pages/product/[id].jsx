@@ -95,7 +95,7 @@ const Product = ({ pizza, pizzalist }) => {
             <div className="right">
               <div className="rightContent">
                 <h2 className="title">{pizza.title}</h2>
-                <span className="price">${price}</span>
+                <span className="price">&#8358;{price}</span>
                 <p className="product-desc">{pizza.desc}</p>
                 <h5 className="choose mb-3">Package size?</h5>
                 <div className="sizes">

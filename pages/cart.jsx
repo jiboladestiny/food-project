@@ -17,9 +17,6 @@ const Cart = () => {
   const [order, setOrder] = useState("");
   const [spinner, setSpinner] = useState(false);
 
-  const amount = cart.total;
-  const currency = "USD";
-  const style = { layout: "vertical" };
   const dispatch = useDispatch();
 
 
@@ -58,7 +55,7 @@ const Cart = () => {
 
           <Link href="/" passHref>
             <button className="btn btn-secondary d-flex align-items-center btn-sm mt-5">
-              Start ordering <i className="bx bx-chevrons-right mt-1"></i>
+              Start ordering
             </button>
           </Link>
         </div>
@@ -167,7 +164,9 @@ const Cart = () => {
                         </span>
                       </td>
                       <td>
-                        <span className="cart-price">${product.price}</span>
+                        <span className="cart-price">
+                          &#8358;{product.price}
+                        </span>
                       </td>
                       <td>
                         <span className="cart-quantity">
@@ -178,7 +177,7 @@ const Cart = () => {
                       </td>
                       <td>
                         <span className="cart-total">
-                          ${product.price * product.quantity}
+                          &#8358;{product.price * product.quantity}
                         </span>
                       </td>
                       <td>
@@ -204,7 +203,7 @@ const Cart = () => {
             </div>
             <Link href="/" passHref>
               <button className="btn btn-secondary btn-sm d-flex align-items-center">
-                Continue ordering <i className="bx bx-chevrons-right mt-1"></i>
+                Continue ordering
               </button>
             </Link>
           </div>
@@ -217,11 +216,11 @@ const Cart = () => {
               </div>
               <div className="cart-totalText mb-1">
                 <b className="cart-totalTextTitle">Delivery:</b>
-                <span>&#8358;0</span>
+                <span>&#8358;700</span>
               </div>
               <div className="cart-totalText">
                 <b className="cart-totalTextTitle">Total:</b>
-                <span>&#8358;{cart.total}</span>
+                <span>&#8358;{cart.total + 700}</span>
               </div>
 
               <div className="cart-paymentMethods">

@@ -22,7 +22,7 @@ const Cart = () => {
 
   const createOrder = async (data) => {
     const response = await fetch(
-      "http://food-project-ruddy.vercel.app/api/orders",
+      "https://food-project-ruddy.vercel.app/api/orders",
       {
         method: "POST",
         body: JSON.stringify(data),

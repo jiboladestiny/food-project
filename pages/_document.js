@@ -13,11 +13,14 @@ export default function Document() {
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossOrigin="anonymous"
       />
-        <link
+      <link
         href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
         rel="stylesheet"
       />
-
+      <meta
+        httpEquiv="Content-Security-Policy"
+        content="upgrade-insecure-requests"
+      ></meta>
       <body>
         <Main />
         <NextScript />

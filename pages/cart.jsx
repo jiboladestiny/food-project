@@ -21,22 +21,30 @@ const Cart = () => {
 
 
   const createOrder = async (data) => {
-    try {
-      const res = await axios.post(
-        "http://food-project-ruddy.vercel.app/api/orders",
-        data
-      );
-      setSpinner(true)
-      if (res.status === 201) {
-        setOrder(res.data._id);
+    const response = await fetch("http://localhost:3000/api/orders", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+        setOrder(result._id);
         setCash(false);
         setSuccess(true);
-        setSpinner(false)
-      }
-    } catch (err) {
-      console.log(err);
-      setSpinner(false)
-    }
+    // try {
+    //   const res = await axios.post("http://localhost:3000/api/orders", data);
+    //   setSpinner(true)
+    //   if (res.status === 201) {
+    //     setOrder(res.data._id);
+    //     setCash(false);
+    //     setSuccess(true);
+    //     setSpinner(false)
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    //   setSpinner(false)
+    // }
   };
 
   const closeOrder = () => {

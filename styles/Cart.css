@@ -1,4 +1,4 @@
-.cart-container{
+.cart-container {
   height: 65vh;
 }
 .cart-image {
@@ -62,12 +62,10 @@
 .cart-total {
   font-weight: 500;
   font-size: 16px;
-
 }
 
-
-.cart-delete{
-  background-color: rgb(255, 0, 0,0.7);
+.cart-delete {
+  background-color: rgb(255, 0, 0, 0.7);
   color: white;
   width: 25px;
   height: 25px;
@@ -112,11 +110,11 @@
   font-size: 13px !important;
 }
 
-.cart-mobile{
+.cart-mobile {
   display: none;
 }
 
-.empty-cart{
+.empty-cart {
   background-color: whitesmoke;
   width: 400px;
   max-width: 100%;
@@ -124,11 +122,27 @@
   padding: 1.5rem;
   font-size: 19px;
   font-weight: 600;
+}
 
+.clear-cart-desktop,
+.clear-cart-mobile {
+  background-color: rgba(255, 0, 0, 0.6) !important;
+  color: white !important;
+}
+
+.clear-cart-mobile {
+  display: none !important;
 }
 
 @media screen and (max-width: 600px) {
-  .cart-wrapper{
+  .clear-cart-desktop {
+    display: none !important;
+  }
+
+  .clear-cart-mobile {
+    display: block !important;
+  }
+  .cart-wrapper {
     margin-top: 2rem;
   }
   #cart {
@@ -154,12 +168,31 @@
     border-radius: 0.5rem;
   }
 
+  .cart-mobile i {
+    background-color: red;
+    color: white;
+
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+
+    background-color: rgb(255, 0, 0, 0.7);
+    color: white;
+    width: 27px;
+    height: 27px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
   .cart-mobile-price {
     position: absolute;
     padding: 0.1rem 0.5rem;
     bottom: 0.4rem;
     right: 0.4rem;
-    background-color: rgb(0, 0, 0,0.7);
+    background-color: rgb(0, 0, 0, 0.7);
     color: white;
     border-radius: 0.5rem;
     height: 30px;

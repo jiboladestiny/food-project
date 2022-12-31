@@ -1,10 +1,8 @@
 import { React, useState } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
+
 import axios from "axios";
 
-const Status = ({ order }) => {
-  const router = useRouter();
+const Status = ({ pizzaList }) => {
   const [code, setCode] = useState("");
   const [status, setStatus] = useState(0);
   const [statusdetail, setStatusDetail] = useState();
@@ -12,7 +10,9 @@ const Status = ({ order }) => {
   const check = async () => {
     setStatus(0);
     try {
-      const res = await axios.get(`http://localhost:3000/api/orders/${code}`);
+      const res = await axios.get(
+        `http://food-project-ruddy.vercel.app/api/orders/${code}`
+      );
       setStatusDetail(res.data);
 
       setStatus(1);
@@ -33,7 +33,11 @@ const Status = ({ order }) => {
           onChange={(e) => setCode(e.target.value)}
         />
 
-        <button className="btn btn-secondary" onClick={check} disabled={code === ""}>
+        <button
+          className="btn btn-secondary"
+          onClick={check}
+          disabled={code === ""}
+        >
           Check
         </button>
       </div>
@@ -129,11 +133,12 @@ const Status = ({ order }) => {
 
 export const getServerSideProps = async () => {
   const res = await axios.get(
-    `https://food-project-ruddy.vercel.app/api/orders`
+    "http://food-project-ruddy.vercel.app/api/products"
   );
   return {
-    props: { order: res.data },
+    props: {
+      pizzaList: res.data
+    },
   };
 };
-
 export default Status;

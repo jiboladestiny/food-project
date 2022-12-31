@@ -1,11 +1,21 @@
 .containers {
-  padding-top: 5rem;
+  padding-top: 3rem;
   padding-bottom: 5rem;
+}
+
+.food-wrapper-container {
+  padding-top: 4.5rem;
 }
 
 .titles {
   text-align: center;
-  font-size: 30px;
+  /* font-size: 30px; */
+}
+
+.foodie-wrapper {
+  background-color: whitesmoke;
+  padding: 2rem;
+  border-radius: 0.5rem;
 }
 
 .descs {
@@ -13,16 +23,16 @@
   color: #444;
   text-align: center;
 }
-.tab-content-wrapper{
+.tab-content-wrapper {
   margin-top: 2.5rem;
 }
 
 .tab-wrapper button {
   background: rgb(0, 0, 0, 0.4) !important ;
   color: white !important;
-  padding: 0.4rem 1rem;
+  /* padding: 0.4rem 1rem; */
   font-size: 16px;
-  border-radius: 0.3rem;
+  /* border-radius: 0.3rem; */
 }
 
 .tab-wrapper button.active {
@@ -30,15 +40,17 @@
   color: white !important;
 }
 
+.related{
+  margin-top: 4rem;
+}
+
 @media screen and (max-width: 576px) {
-
-
   .tab-wrapper {
     overflow-x: scroll;
     display: flex;
   }
   .tab-wrapper button {
-    min-width: 150px;
+    min-width: 136px;
   }
 }
 

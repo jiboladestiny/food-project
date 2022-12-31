@@ -1,0 +1,9 @@
+@media (max-width: 600px) {
+    footer{
+        display: none;
+    }
+}
+
+footer{
+    margin-top: 5rem;
+}

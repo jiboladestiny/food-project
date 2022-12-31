@@ -18,8 +18,15 @@ const cartSlice = createSlice({
       state.quantity = 0;
       state.total = 0;
     },
+    deleteProduct: (state, { payload }) => {
+      // console.log(state.products);
+      state.products = state.products.filter((item) => item.id !== payload.id);
+      state.quantity -= 1
+      state.total -= payload.price
+      
+    },
   },
 });
 
-export const { addProduct, reset } = cartSlice.actions;
+export const { addProduct, reset, deleteProduct } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { reset } from "../redux/cartSlice";
+import { reset, deleteProduct } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Success from "../components/Success";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -41,6 +43,8 @@ const Cart = () => {
 
   return (
     <div className="container cart-container">
+      <ToastContainer autoClose={1000} />
+
       <h3 className="mt-5 mb-3">My Orders</h3>
       {cart.products.length === 0 && (
         <div>
@@ -48,7 +52,7 @@ const Cart = () => {
 
           <Link href="/" passHref>
             <button className="btn btn-secondary btn-sm mt-5">
-              Start shopping
+              Start ordering
             </button>
           </Link>
         </div>
@@ -56,6 +60,15 @@ const Cart = () => {
       {cart.products.length > 0 && (
         <div className="row">
           <div className="col-lg-8">
+            <button
+              className="btn btn-sm clear-cart-mobile"
+              onClick={() => {
+                dispatch(reset());
+                toast.error("Basket Cleared");
+              }}
+            >
+              <i className="bx bx-trash"></i> Clear cart
+            </button>
             {cart.products.map((product) => (
               <div className="cart-mobile" key={product.id}>
                 <div>
@@ -74,11 +87,21 @@ const Cart = () => {
                     ))}
                   </h6>
                   <div className="d-flex">
-                    <div className="cart-cont">
-                      <div className="minus">-</div>
-                      <div>1</div>
-                      <div className="plus">+</div>
+                    <div className="cart-cont">               
+                      <div>{product.quantity}</div>
                     </div>
+                    <i
+                      className="bx bx-trash"
+                      onClick={() => {
+                        dispatch(
+                          deleteProduct({
+                            id: product.id,
+                            price: product.price * product.quantity,
+                          })
+                        );
+                        toast.error("Order Deleted");
+                      }}
+                    ></i>
 
                     <div className="cart-mobile-price">
                       <h6>&#8358;5,000</h6>
@@ -88,8 +111,16 @@ const Cart = () => {
               </div>
             ))}
 
-
-            <div className="table-responsive">              
+            <div className="table-responsive">
+              <button
+                className="btn btn-sm clear-cart-desktop"
+                onClick={() => {
+                  dispatch(reset());
+                  toast.error("Basket Cleared");
+                }}
+              >
+                <i className="bx bx-trash"></i> Clear cart
+              </button>
               <table className="table table-striped align-middle" id="cart">
                 <thead>
                   <tr className="">
@@ -104,7 +135,7 @@ const Cart = () => {
                 </thead>
                 <tbody>
                   {cart.products.map((product) => (
-                    <tr className="cart-tr" key={product._id}>
+                    <tr className="cart-tr" key={product.id}>
                       <td>
                         <div className="cart-imgContainer">
                           <img
@@ -135,9 +166,9 @@ const Cart = () => {
                       <td>
                         <span className="cart-quantity">
                           <div className="cart-cont">
-                            <div className="minus">-</div>
-                            <div>1</div>
-                            <div className="plus">+</div>
+                          
+                            <div>{product.quantity}</div>
+                           
                           </div>
                         </span>
                       </td>
@@ -147,12 +178,19 @@ const Cart = () => {
                         </span>
                       </td>
                       <td>
-                        <div className="cart-delete" onClick={()=>{
-                          cart.products.filter((item)=>{
-                            return item.id !== product._id;
-                          })
-                        }}>
-                          X
+                        <div className="cart-delete">
+                          <i
+                            className="bx bx-trash"
+                            onClick={() => {
+                              dispatch(
+                                deleteProduct({
+                                  id: product.id,
+                                  price: product.price * product.quantity,
+                                })
+                              );
+                              // toast.error("Order Deleted");
+                            }}
+                          ></i>
                         </div>
                       </td>
                     </tr>
@@ -171,33 +209,25 @@ const Cart = () => {
               <h4 className="cart-title">Payment summary</h4>
               <div className="cart-totalText mb-1">
                 <b className="cart-totalTextTitle">Subtotal:</b>
-                <span>${cart.total}</span>
+                <span>&#8358;{cart.total}</span>
               </div>
               <div className="cart-totalText mb-1">
                 <b className="cart-totalTextTitle">Delivery:</b>
-                <span>$0.00</span>
+                <span>&#8358;0</span>
               </div>
               <div className="cart-totalText">
                 <b className="cart-totalTextTitle">Total:</b>
-                <span>${cart.total}</span>
+                <span>&#8358;{cart.total}</span>
               </div>
-              {open ? (
-                <div className="cart-paymentMethods">
-                  <button
-                    className="cart-button btn"
-                    onClick={() => setCash(true)}
-                  >
-                    Pay on delivery
-                  </button>
-                </div>
-              ) : (
+
+              <div className="cart-paymentMethods">
                 <button
-                  onClick={() => setOpen(true)}
-                  className="cart-button btn"
+                  className="cart-button btn shadow-none"
+                  onClick={() => setCash(true)}
                 >
-                  Checkout{" "}
+                  Pay on delivery
                 </button>
-              )}
+              </div>
             </div>
           </div>
 

@@ -31,6 +31,8 @@
 }
 .pizza-title {
   font-size: 18px;
+  height: 40px;
+
   font-weight: bold;
   color: #d1411e;
 }
@@ -42,14 +44,14 @@
 }
 
 .pizza-price i {
-  font-size: 15px;
+  font-size: 14px;
   background-color: black;
   color: white;
   padding: 0.3rem;
   border-radius: 2rem;
   position: absolute;
-  bottom: 0.5rem;
-  right: 0.5rem;
+  bottom: 0.2rem;
+  right: 0.2rem;
 }
 
 .pizza-desc {

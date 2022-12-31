@@ -1,22 +1,31 @@
-import Head from "next/head";
 
-import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
 import Basket from "../../components/Basket";
-
-const Product = ({ pizza }) => {
+import PizzaCard from "../../components/PizzaCard";
+  import { ToastContainer, toast } from "react-toastify";
+  import "react-toastify/dist/ReactToastify.css";
+const Product = ({ pizza, pizzalist }) => {
   const [price, setPrice] = useState(pizza.prices[0]);
   const [size, setSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [extras, setExtras] = useState([]);
+
   const dispatch = useDispatch();
 
   const changePrice = (number) => {
     setPrice(price + number);
   };
+  const International = pizzalist.filter((item) => {
+    return item.category === pizza.category;
+  });
+
+    const Internal = International.filter((item) => {
+    return item._id !== pizza._id;
+  });
+
 
   const handleSize = (sizeIndex) => {
     const difference = pizza.prices[sizeIndex] - pizza.prices[size];
@@ -37,14 +46,17 @@ const Product = ({ pizza }) => {
   };
 
   const handleClick = () => {
-    dispatch(addProduct({ ...pizza, extras, price, quantity }));
+    const uniqueId = Math.floor(Math.random() * 100);
+
+    dispatch(addProduct({ ...pizza, extras, price, quantity, id:uniqueId }));
+    toast.success("Order placed");
   };
 
   return (
     <>
       <div className="container">
         <Basket />
-
+        <ToastContainer autoClose={1000} />
         <div className="productContainer row">
           <div className="col-md-6">
             <div className="left">
@@ -85,7 +97,7 @@ const Product = ({ pizza }) => {
                 <h2 className="title">{pizza.title}</h2>
                 <span className="price">${price}</span>
                 <p className="product-desc">{pizza.desc}</p>
-                <h5 className="choose mb-3">size?</h5>
+                <h5 className="choose mb-3">Package size?</h5>
                 <div className="sizes">
                   <div
                     className={size === 0 ? "size active me-3" : "size me-3"}
@@ -155,6 +167,16 @@ const Product = ({ pizza }) => {
             </div>
           </div>
         </div>
+
+        <div className="related">
+          <h3 className="mb-4">Related Foods</h3>
+
+          <div className="row gy-4">
+            {Internal.map((pizza) => (
+              <PizzaCard key={pizza._id} pizza={pizza} />
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
@@ -162,11 +184,16 @@ const Product = ({ pizza }) => {
 
 export const getServerSideProps = async ({ params }) => {
   const res = await axios.get(
-    `http://localhost:3000/api/products/${params.id}`
+    `http://food-project-ruddy.vercel.app/api/products/${params.id}`
+  );
+
+  const response = await axios.get(
+    "http://food-project-ruddy.vercel.app/api/products"
   );
   return {
     props: {
       pizza: res.data,
+      pizzalist: response.data,
     },
   };
 };

@@ -14,9 +14,13 @@
     "cookie": "^0.4.1",
     "mongoose": "^6.1.4",
     "next": "12.0.7",
+    "nextjs-progressbar": "^0.0.16",
+    "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-notifications": "^1.7.4",
     "react-redux": "^7.2.6",
+    "react-toastify": "^9.1.1",
     "redux": "^4.1.2"
   },
   "devDependencies": {

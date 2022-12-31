@@ -8,6 +8,12 @@ const vidRef = useRef();
 useEffect(() => {
   vidRef.current.play();
 }, []);
+
+
+const order = ()=>{
+   var element = document.getElementById("food");
+   element.scrollIntoView();
+}
   return (
     <div className="intro">
       <video
@@ -21,7 +27,7 @@ useEffect(() => {
       <div className="content">
         <h2 className="first-head">Hot and Spicy</h2>
         <h2 className="second-head mt-3">Reserved just for you</h2>
-        <button>Order now</button>
+        <button onClick={order}>Order now</button>
       </div>
     </div>
   );

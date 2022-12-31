@@ -115,7 +115,8 @@
 }
 
 .empty-cart {
-  background-color: whitesmoke;
+  background-color: 	rgb(220,220,220);
+ 
   width: 400px;
   max-width: 100%;
   text-align: center;

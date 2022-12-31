@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { reset, deleteProduct } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Success from "../components/Success";
@@ -12,33 +11,40 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const [open, setOpen] = useState(false);
+
   const [cash, setCash] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [order, setOrder] = useState(false);
+  const [order, setOrder] = useState("");
+  const [spinner, setSpinner] = useState(false);
+
   const amount = cart.total;
   const currency = "USD";
   const style = { layout: "vertical" };
   const dispatch = useDispatch();
-  const router = useRouter();
+
 
   const createOrder = async (data) => {
     try {
       const res = await axios.post("http://localhost:3000/api/orders", data);
+      setSpinner(true)
       if (res.status === 201) {
-        dispatch(reset());
-        // router.push(`/orders/${res.data._id}`);
         setOrder(res.data._id);
         setCash(false);
         setSuccess(true);
+        setSpinner(false)
       }
     } catch (err) {
       console.log(err);
+      setSpinner(false)
     }
   };
 
   const closeOrder = () => {
     setCash(false);
+  };
+
+  const resetOrder = () => {
+    dispatch(reset());
   };
 
   return (
@@ -51,8 +57,8 @@ const Cart = () => {
           <div className="empty-cart">Basket is Empty</div>
 
           <Link href="/" passHref>
-            <button className="btn btn-secondary btn-sm mt-5">
-              Start ordering
+            <button className="btn btn-secondary d-flex align-items-center btn-sm mt-5">
+              Start ordering <i className="bx bx-chevrons-right mt-1"></i>
             </button>
           </Link>
         </div>
@@ -87,7 +93,7 @@ const Cart = () => {
                     ))}
                   </h6>
                   <div className="d-flex">
-                    <div className="cart-cont">               
+                    <div className="cart-cont">
                       <div>{product.quantity}</div>
                     </div>
                     <i
@@ -166,9 +172,7 @@ const Cart = () => {
                       <td>
                         <span className="cart-quantity">
                           <div className="cart-cont">
-                          
                             <div>{product.quantity}</div>
-                           
                           </div>
                         </span>
                       </td>
@@ -188,7 +192,7 @@ const Cart = () => {
                                   price: product.price * product.quantity,
                                 })
                               );
-                              // toast.error("Order Deleted");
+                              toast.error("Order Deleted");
                             }}
                           ></i>
                         </div>
@@ -199,8 +203,8 @@ const Cart = () => {
               </table>
             </div>
             <Link href="/" passHref>
-              <button className="btn btn-secondary btn-sm">
-                Continue ordering
+              <button className="btn btn-secondary btn-sm d-flex align-items-center">
+                Continue ordering <i className="bx bx-chevrons-right mt-1"></i>
               </button>
             </Link>
           </div>
@@ -236,9 +240,10 @@ const Cart = () => {
               total={cart.total}
               closeOrder={closeOrder}
               createOrder={createOrder}
+              spinner={spinner}
             />
           )}
-          {success && <Success id={order} />}
+          {success && <Success resetOrder={resetOrder} id={order} />}
         </div>
       )}
     </div>

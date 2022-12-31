@@ -1,8 +1,22 @@
 import { useState } from "react";
 import Link from "next/link";
-const Success = ({ id }) => {
+import { useRouter } from "next/router";
+const Success = ({ id, resetOrder }) => {
   const [copy, setCopy] = useState(false);
-  const text = "63652418cdabb18ca99b0665";
+  const router = useRouter();
+  const homePage = () => {
+    router.push("/");
+    resetOrder();
+    
+  };
+
+  const trackPage = () => {
+    router.push("/orders/status");
+    resetOrder();
+    
+  };
+
+
 
   return (
     <div className="successs">
@@ -32,10 +46,17 @@ const Success = ({ id }) => {
 
         <div className="button-cont d-flex justify-content-center">
           <Link href="/" passHref>
-            <button className="btn btn-sm btn-secondary me-2">Home page</button>
+            <button
+              className="btn btn-sm btn-secondary me-2"
+              onClick={homePage}
+            >
+              Home page
+            </button>
           </Link>
           <Link href="/orders/status" passHref>
-            <button className="btn btn-sm btn-success">Track Order</button>
+            <button className="btn btn-sm btn-success" onClick={trackPage}>
+              Track Order
+            </button>
           </Link>
         </div>
       </div>

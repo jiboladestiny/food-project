@@ -5,7 +5,7 @@
   width: 98%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color:whitesmoke;
+  background-color: rgb(216,216,216);
   display: flex;
   justify-content: space-around;
   border-radius: 0.2rem;
@@ -14,8 +14,8 @@
 
 
 .mobile-tab .btn{
-    background-color: gray;
-    color: white;
+    background-color: white;
+    color: black;
  
     
 }
@@ -33,6 +33,7 @@
 
 .basket-btn span{
   background-color: rgb(255, 0, 0,0.9);
+  color: white;
   position: absolute;
   top: -0.5rem;
   right: -0.7rem;

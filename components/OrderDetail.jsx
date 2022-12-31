@@ -1,19 +1,17 @@
 import { useState } from "react";
 
-const OrderDetail = ({ total, createOrder,closeOrder }) => {
+const OrderDetail = ({ total, createOrder, closeOrder,spinner }) => {
   const [customer, setCustomer] = useState("");
   const [address, setAddress] = useState("");
   const [telephone, setTelephone] = useState("");
-  const [showorder, setShoworder] = useState("");
-
 
   const handleClick = () => {
     createOrder({ customer, address, total, method: 0 });
   };
 
-  const closeClick= () =>{
-    closeOrder()
-  }
+  const closeClick = () => {
+    closeOrder();
+  };
 
   return (
     <div className="order-container">
@@ -52,10 +50,18 @@ const OrderDetail = ({ total, createOrder,closeOrder }) => {
           />
         </div>
         <button
-          className="btn btn-secondary"
+          className="btn btn-success"
           onClick={handleClick}
           disabled={customer === "" && address === "" && telephone === ""}
         >
+          {spinner && (
+            <div
+              className="spinner-border text-light spinner-border-sm"
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          )}
           Proceed
         </button>
       </div>

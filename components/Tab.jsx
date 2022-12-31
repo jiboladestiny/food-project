@@ -36,7 +36,7 @@ const Tab = () => {
         <button
           className={
             router.pathname == "/cart"
-              ? "active btn btn-sm"
+              ? "active btn btn-sm basket-btn"
               : "btn btn-sm basket-btn"
           }
         >

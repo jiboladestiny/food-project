@@ -22,7 +22,10 @@ const Cart = () => {
 
   const createOrder = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/orders", data);
+      const res = await axios.post(
+        "http://food-project-ruddy.vercel.app/api/orders",
+        data
+      );
       setSpinner(true)
       if (res.status === 201) {
         setOrder(res.data._id);

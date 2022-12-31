@@ -21,13 +21,16 @@ const Cart = () => {
 
 
   const createOrder = async (data) => {
-    const response = await fetch("http://localhost:3000/api/orders", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "http://food-project-ruddy.vercel.app/api/orders",
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const result = await response.json();
         setOrder(result._id);
         setCash(false);

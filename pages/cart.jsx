@@ -121,7 +121,7 @@ const Cart = () => {
                     ></i>
 
                     <div className="cart-mobile-price">
-                      <h6>&#8358;5,000</h6>
+                      <h6>&#8358;{product.price * product.quantity}</h6>
                     </div>
                   </div>
                 </div>

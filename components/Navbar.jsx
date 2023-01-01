@@ -51,7 +51,7 @@ const Navbar = () => {
               <ul className="list-group">
                 <li className="list-group-item">
                   <Link
-                    href="https://api.whatsapp.com/send?phone=08106203404"
+                    href="https://api.whatsapp.com/send?phone=+2348106203404"
                     passHref
                   >
                     <button className="btn dropdown-item">

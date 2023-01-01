@@ -27,6 +27,7 @@ const OrderDetail = ({ total, createOrder, closeOrder,spinner }) => {
             placeholder="Destiny"
             type="text"
             className="order-input form-control"
+            value={customer}
             onChange={(e) => setCustomer(e.target.value)}
           />
         </div>
@@ -36,6 +37,7 @@ const OrderDetail = ({ total, createOrder, closeOrder,spinner }) => {
             type="text"
             placeholder="+234 873 455"
             className="order-input form-control"
+            value={telephone}
             onChange={(e) => setTelephone(e.target.value)}
           />
         </div>
@@ -45,6 +47,7 @@ const OrderDetail = ({ total, createOrder, closeOrder,spinner }) => {
             rows={5}
             placeholder="No 44, Elon musk street"
             type="text"
+            value={address}
             className="order-textarea form-control"
             onChange={(e) => setAddress(e.target.value)}
           />
@@ -52,7 +55,7 @@ const OrderDetail = ({ total, createOrder, closeOrder,spinner }) => {
         <button
           className="btn btn-success"
           onClick={handleClick}
-          disabled={customer === "" && address === "" && telephone === ""}
+          disabled={customer.length < 4 || telephone.length < 6 || address.length < 8}
         >
           {spinner && (
             <div

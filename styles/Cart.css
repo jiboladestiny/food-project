@@ -45,6 +45,7 @@
   border-bottom-left-radius: 10px;
   background-color: rgb(221, 221, 221);
   color: black;
+  cursor: pointer;
 }
 
 .cart-cont .plus {
@@ -52,6 +53,7 @@
   border-bottom-right-radius: 10px;
   background-color: rgb(221, 221, 221);
   color: black;
+  cursor: pointer;
 }
 .cart-name {
   font-weight: 500;
@@ -189,8 +191,9 @@
     cursor: pointer;
   }
 
-  .cart-mobile-price {
-    position: absolute;
+
+  .cart-total-cont{
+      position: absolute;
     padding: 0.1rem 0.5rem;
     bottom: 0.4rem;
     right: 0.4rem;
@@ -202,6 +205,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .cart-mobile-price {
+    /* display: flex; */
+  
   }
 
   .cart-mobile-title {

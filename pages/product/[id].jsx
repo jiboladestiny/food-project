@@ -160,7 +160,7 @@ const Product = ({ pizza, pizzalist }) => {
                     </div>
                   </div>
                   <button className="product-button btn" onClick={handleClick}>
-                    Place Order
+                    Add to basket
                   </button>
                 </div>
               </div>

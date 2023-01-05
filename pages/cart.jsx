@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { reset, deleteProduct } from "../redux/cartSlice";
+import { reset, deleteProduct, increase ,decrease} from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Success from "../components/Success";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,7 +19,6 @@ const Cart = () => {
 
   const dispatch = useDispatch();
 
-
   const createOrder = async (data) => {
     const response = await fetch(
       "https://food-project-ruddy.vercel.app/api/orders",
@@ -32,9 +31,9 @@ const Cart = () => {
       }
     );
     const result = await response.json();
-        setOrder(result._id);
-        setCash(false);
-        setSuccess(true);
+    setOrder(result._id);
+    setCash(false);
+    setSuccess(true);
     // try {
     //   const res = await axios.post("http://localhost:3000/api/orders", data);
     //   setSpinner(true)
@@ -93,6 +92,7 @@ const Cart = () => {
                 </div>
                 <div className="ms-4">
                   <h5 className="cart-mobile-title">{product.title}</h5>
+                  <h6>&#8358;{product.price}</h6>
                   <h6>
                     {product.extras.map((extra) => (
                       <button
@@ -103,26 +103,52 @@ const Cart = () => {
                       </button>
                     ))}
                   </h6>
-                  <div className="d-flex">
-                    <div className="cart-cont">
-                      <div>{product.quantity}</div>
-                    </div>
-                    <i
-                      className="bx bx-trash"
+
+                  <div className="cart-cont">
+                    <div
+                      className="minus"
                       onClick={() => {
                         dispatch(
-                          deleteProduct({
+                          decrease({
                             id: product.id,
-                            price: product.price * product.quantity,
                           })
                         );
-                        toast.error("Order Deleted");
                       }}
-                    ></i>
-
-                    <div className="cart-mobile-price">
-                      <h6>&#8358;{product.price * product.quantity}</h6>
+                    >
+                      -
                     </div>
+                    <div>{product.quantity}</div>
+                    <div
+                      className="plus"
+                      onClick={() => {
+                        dispatch(
+                          increase({
+                            id: product.id,
+                          })
+                        );
+                      }}
+                    >
+                      +
+                    </div>
+                  </div>
+
+                  <i
+                    className="bx bx-trash"
+                    onClick={() => {
+                      dispatch(
+                        deleteProduct({
+                          id: product.id,
+                          price: product.price * product.quantity,
+                        })
+                      );
+                      toast.error("Order Deleted");
+                    }}
+                  ></i>
+
+                  <div className="cart-mobile-price">
+                    <h6 className="cart-total-cont">
+                      &#8358;{product.price * product.quantity}
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -185,7 +211,31 @@ const Cart = () => {
                       <td>
                         <span className="cart-quantity">
                           <div className="cart-cont">
+                            <div
+                              className="minus"
+                              onClick={() => {
+                                dispatch(
+                                  decrease({
+                                    id: product.id,
+                                  })
+                                );
+                              }}
+                            >
+                              -
+                            </div>
                             <div>{product.quantity}</div>
+                            <div
+                              className="plus"
+                              onClick={() => {
+                                dispatch(
+                                  increase({
+                                    id: product.id,
+                                  })
+                                );
+                              }}
+                            >
+                              +
+                            </div>
                           </div>
                         </span>
                       </td>

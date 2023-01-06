@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteModal = ({ proceed, cancel, action, id, price, quantity }) => {
+const Modals = ({ proceed, cancel, action, id, price, quantity }) => {
   return (
     <div className="delete-modal">
       <div className="delete-wrapper">
@@ -34,4 +34,4 @@ const DeleteModal = ({ proceed, cancel, action, id, price, quantity }) => {
   );
 };
 
-export default DeleteModal;
+export default Modals;

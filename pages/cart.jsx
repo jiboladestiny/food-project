@@ -6,7 +6,7 @@ import axios from "axios";
 import { reset, deleteProduct, increase, decrease } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Success from "../components/Success";
-import DeleteModal from "../components/DeleteModal";
+import Modals from "../components/Modals";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -76,7 +76,7 @@ const Cart = () => {
     <div className="container cart-container">
       <ToastContainer autoClose={1000} />
       {modal && (
-        <DeleteModal
+        <Modals
           proceed={proceed}
           cancel={cancel}
           action={action}

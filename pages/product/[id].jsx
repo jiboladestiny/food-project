@@ -49,7 +49,7 @@ const Product = ({ pizza, pizzalist }) => {
     const uniqueId = Math.floor(Math.random() * 12345678943434343545454454);
 
     dispatch(addProduct({ ...pizza, extras, price, quantity, id:uniqueId }));
-    toast.success("Order placed");
+    toast.success("Added to Basket");
   };
 
   return (

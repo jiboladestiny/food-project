@@ -155,8 +155,8 @@
   }
 
   .cart-image {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
     object-fit: cover;
     /* border-radius: 50%; */
   }
@@ -215,8 +215,8 @@
     color: red;
   }
   .cart-cont div {
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
     font-size: 15px;
   }
 }

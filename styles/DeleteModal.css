@@ -1,0 +1,30 @@
+.delete-modal {
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 20;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0, 0.3);
+}
+
+.delete-wrapper {
+  width:350px;
+  max-width: 95%;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.warning-img{
+  width: 70px;
+  height: 70px;
+}

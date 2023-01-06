@@ -3,9 +3,10 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { reset, deleteProduct, increase ,decrease} from "../redux/cartSlice";
+import { reset, deleteProduct, increase, decrease } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Success from "../components/Success";
+import DeleteModal from "../components/DeleteModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,6 +16,11 @@ const Cart = () => {
   const [cash, setCash] = useState(false);
   const [success, setSuccess] = useState(false);
   const [order, setOrder] = useState("");
+  const [modal, setModal] = useState(false);
+  const [action, setAction] = useState(false);
+  const [id, setId] = useState(false);
+  const [price, setPrice] = useState(false);
+  const [quantity, setquantity] = useState(false);
   const [spinner, setSpinner] = useState(false);
 
   const dispatch = useDispatch();
@@ -34,19 +40,6 @@ const Cart = () => {
     setOrder(result._id);
     setCash(false);
     setSuccess(true);
-    // try {
-    //   const res = await axios.post("http://localhost:3000/api/orders", data);
-    //   setSpinner(true)
-    //   if (res.status === 201) {
-    //     setOrder(res.data._id);
-    //     setCash(false);
-    //     setSuccess(true);
-    //     setSpinner(false)
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   setSpinner(false)
-    // }
   };
 
   const closeOrder = () => {
@@ -57,10 +50,41 @@ const Cart = () => {
     dispatch(reset());
   };
 
+  const proceed = (action, id = 0, price = 0, quantity = 0) => {
+    setModal(false);
+
+    if (action === "clear") {
+      dispatch(reset());
+
+      toast.error("Basket Cleared");
+    } else {
+      dispatch(
+        deleteProduct({
+          id: id,
+          price: price * quantity,
+        })
+      );
+      toast.error("Order Deleted");
+    }
+  };
+
+  const cancel = () => {
+    setModal(false);
+  };
+
   return (
     <div className="container cart-container">
       <ToastContainer autoClose={1000} />
-
+      {modal && (
+        <DeleteModal
+          proceed={proceed}
+          cancel={cancel}
+          action={action}
+          id={id}
+          price={price}
+          quantity={quantity}
+        />
+      )}
       <h3 className="mt-5 mb-3">My Orders</h3>
       {cart.products.length === 0 && (
         <div>
@@ -79,8 +103,9 @@ const Cart = () => {
             <button
               className="btn btn-sm clear-cart-mobile"
               onClick={() => {
-                dispatch(reset());
-                toast.error("Basket Cleared");
+                setModal(true);
+
+                setAction("clear");
               }}
             >
               <i className="bx bx-trash"></i> Clear cart
@@ -91,8 +116,11 @@ const Cart = () => {
                   <img src={product.img} className="cart-image" alt="" />
                 </div>
                 <div className="ms-4">
-                  <h5 className="cart-mobile-title">{product.title}</h5>
-                  <h6>&#8358;{product.price}</h6>
+                  <div className="d-flex align-items-center">
+                    <h5 className="cart-mobile-title me-2">{product.title}</h5>
+
+                    <h6 className="mt-1">&#8358;{product.price}</h6>
+                  </div>
                   <h6>
                     {product.extras.map((extra) => (
                       <button
@@ -135,13 +163,12 @@ const Cart = () => {
                   <i
                     className="bx bx-trash"
                     onClick={() => {
-                      dispatch(
-                        deleteProduct({
-                          id: product.id,
-                          price: product.price * product.quantity,
-                        })
-                      );
-                      toast.error("Order Deleted");
+                      setModal(true);
+
+                      setAction("delete");
+                      setId(product.id);
+                      setPrice(product.price);
+                      setquantity(product.quantity);
                     }}
                   ></i>
 
@@ -158,8 +185,9 @@ const Cart = () => {
               <button
                 className="btn btn-sm clear-cart-desktop"
                 onClick={() => {
-                  dispatch(reset());
-                  toast.error("Basket Cleared");
+                  setModal(true);
+
+                  setAction("clear");
                 }}
               >
                 <i className="bx bx-trash"></i> Clear cart
@@ -249,13 +277,12 @@ const Cart = () => {
                           <i
                             className="bx bx-trash"
                             onClick={() => {
-                              dispatch(
-                                deleteProduct({
-                                  id: product.id,
-                                  price: product.price * product.quantity,
-                                })
-                              );
-                              toast.error("Order Deleted");
+                              setModal(true);
+
+                              setAction("delete");
+                              setId(product.id);
+                              setPrice(product.price);
+                              setquantity(product.quantity);
                             }}
                           ></i>
                         </div>

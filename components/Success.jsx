@@ -21,6 +21,7 @@ const Success = ({ id, resetOrder }) => {
   return (
     <div className="successs">
       <div className="success-wrapper">
+
         <h5 className="successs-title">Order proccessed successfully</h5>
 
         <p className="text-center">Copy the ID below to track your order</p>

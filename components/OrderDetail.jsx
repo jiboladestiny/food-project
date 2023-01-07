@@ -59,7 +59,7 @@ const OrderDetail = ({ total, createOrder, closeOrder,spinner }) => {
         >
           {spinner && (
             <div
-              className="spinner-border text-light spinner-border-sm"
+              className="spinner-border me-1 text-light spinner-border-sm"
               role="status"
             >
               <span className="visually-hidden">Loading...</span>

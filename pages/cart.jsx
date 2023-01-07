@@ -26,6 +26,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const createOrder = async (data) => {
+    setSpinner(true);
     const response = await fetch(
       "https://food-project-ruddy.vercel.app/api/orders",
       {
@@ -40,6 +41,8 @@ const Cart = () => {
     setOrder(result._id);
     setCash(false);
     setSuccess(true);
+    setSpinner(false);
+    toast.success("Added to Basket");
   };
 
   const closeOrder = () => {

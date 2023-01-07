@@ -42,7 +42,7 @@ const Cart = () => {
     setCash(false);
     setSuccess(true);
     setSpinner(false);
-    toast.success("Added to Basket");
+    toast.success("Order Process Successfully");
   };
 
   const closeOrder = () => {

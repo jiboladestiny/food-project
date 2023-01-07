@@ -41,33 +41,35 @@ const Navbar = () => {
           </li>
 
           <li className="nav-item order-button">
-            <button className="btn direct-order" onClick={()=>{
-              setDirect(!direct)
-            }}>
+            <button
+              className="btn direct-order"
+              onClick={() => {
+                setDirect(!direct);
+              }}
+            >
               <i className="bx bxs-phone-call bx-flashing"></i> Direct Order
             </button>
 
-            {direct && <div className="order-toggle">
-              <ul className="list-group">
-                <li className="list-group-item">
-                  <Link
-                    href="https://api.whatsapp.com/send?phone=+2348106203404"
-                    passHref
-                  >
-                    <button className="btn dropdown-item">
-                      <i className="bx bxl-whatsapp"></i> Whatsapp
-                    </button>
-                  </Link>
-                </li>
-                <li className="list-group-item">
-                  <Link href="tel:08106203404" passHref>
-                    <button className="btn dropdown-item">
-                      <i className="bx bxs-phone-call"></i> Direct call
-                    </button>
-                  </Link>
-                </li>
-              </ul>
-            </div>}
+            {direct && (
+              <div className="order-toggle">
+                <ul className="list-group">
+                  <li className="list-group-item">
+                    <Link href="https://wa.me/08106203404" passHref>
+                      <button className="btn dropdown-item">
+                        <i className="bx bxl-whatsapp"></i> Whatsapp
+                      </button>
+                    </Link>
+                  </li>
+                  <li className="list-group-item">
+                    <Link href="tel:08106203404" passHref>
+                      <button className="btn dropdown-item">
+                        <i className="bx bxs-phone-call"></i> Direct call
+                      </button>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </li>
         </ul>
       </div>

@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head />
-      <title>Pizza Restaurant in Newyork</title>
+      <title>Foodie  Web app</title>
       <meta name="description" content="Best pizza shop in town" />
       <link rel="icon" href="/favicon.ico" />
       <link

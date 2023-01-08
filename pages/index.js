@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import Add from "../components/Add";
-import AddButton from "../components/AddButton";
 import Basket from "../components/Basket";
 import Featured from "../components/Featured";
 import PizzaList from "../components/PizzaList";

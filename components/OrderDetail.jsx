@@ -1,12 +1,35 @@
 import { useState } from "react";
 
-const OrderDetail = ({ total, createOrder, closeOrder,spinner }) => {
+const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
   const [customer, setCustomer] = useState("");
   const [address, setAddress] = useState("");
   const [telephone, setTelephone] = useState("");
+  const [error, setError] = useState("");
 
   const handleClick = () => {
     createOrder({ customer, address, total, method: 0 });
+
+    fetch("/api/sendEmail", {
+      method: "POST",
+      body: JSON.stringify({ customer, address, telephone, product }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Failed to send email");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.error(error);
+      });
   };
 
   const closeClick = () => {
@@ -21,6 +44,7 @@ const OrderDetail = ({ total, createOrder, closeOrder,spinner }) => {
         </span>
 
         <h2 className="order-title">Order details</h2>
+        {error && <div className="alert alert-danger">{error}</div>}
         <div className="order-item">
           <label className="order-label">Name</label>
           <input
@@ -55,7 +79,9 @@ const OrderDetail = ({ total, createOrder, closeOrder,spinner }) => {
         <button
           className="btn btn-success"
           onClick={handleClick}
-          disabled={customer.length < 4 || telephone.length < 6 || address.length < 8}
+          disabled={
+            customer.length < 4 || telephone.length < 6 || address.length < 8
+          }
         >
           {spinner && (
             <div

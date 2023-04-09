@@ -333,6 +333,7 @@ const Cart = () => {
               total={cart.total}
               closeOrder={closeOrder}
               createOrder={createOrder}
+              product={cart}
               spinner={spinner}
             />
           )}

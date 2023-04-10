@@ -4,6 +4,7 @@ const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
   const [customer, setCustomer] = useState("");
   const [address, setAddress] = useState("");
   const [telephone, setTelephone] = useState("");
+  const [mail, setMail] = useState("");
   const [error, setError] = useState("");
 
   const handleClick = () => {
@@ -11,7 +12,7 @@ const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
 
     fetch("/api/sendEmail", {
       method: "POST",
-      body: JSON.stringify({ customer, address, telephone, product }),
+      body: JSON.stringify({ customer, address, telephone, product,mail }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -53,16 +54,29 @@ const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
             className="order-input form-control"
             value={customer}
             onChange={(e) => setCustomer(e.target.value)}
+            required
+          />
+        </div>
+        <div className="order-item">
+          <label className="order-label">Email:</label>
+          <input
+            type="Email"
+            placeholder="johndoe"
+            className="order-input form-control"
+            value={mail}
+            onChange={(e) => setMail(e.target.value)}
+            required
           />
         </div>
         <div className="order-item">
           <label className="order-label">Telephone No:</label>
           <input
-            type="text"
-            placeholder="+234 873 455"
+            type="telephone"
+            placeholder="+2344333234234"
             className="order-input form-control"
             value={telephone}
             onChange={(e) => setTelephone(e.target.value)}
+            required
           />
         </div>
         <div className="order-item">
@@ -74,6 +88,7 @@ const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
             value={address}
             className="order-textarea form-control"
             onChange={(e) => setAddress(e.target.value)}
+            required
           />
         </div>
         <button

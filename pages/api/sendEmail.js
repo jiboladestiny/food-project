@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       secure: true,
       auth: {
         user: "jibola619@gmail.com",
-        pass: "kdyligpqmjwjmzon",
+        pass: process.env.MAIL,
       },
     });
 

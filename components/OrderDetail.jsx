@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
   const [customer, setCustomer] = useState("");
   const [address, setAddress] = useState("");
@@ -36,7 +41,13 @@ const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
   const closeClick = () => {
     closeOrder();
   };
-
+ const handleEmailBlur = () => {
+   if (mail && !isValidEmail(mail)) {
+     setError("Please enter a valid email address.");
+   } else {
+     setError("");
+   }
+ };
   return (
     <div className="order-container">
       <div className="order-wrapper">
@@ -65,8 +76,10 @@ const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
             className="order-input form-control"
             value={mail}
             onChange={(e) => setMail(e.target.value)}
+            onBlur={handleEmailBlur}
             required
           />
+          {error && <div className="error">{error}</div>}
         </div>
         <div className="order-item">
           <label className="order-label">Telephone No:</label>

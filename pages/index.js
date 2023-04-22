@@ -6,6 +6,7 @@ import Add from "../components/Add";
 import Basket from "../components/Basket";
 import Featured from "../components/Featured";
 import PizzaList from "../components/PizzaList";
+import Popupmodal from "../components/Popupmodal";
 import styles from "../styles/Home.module.css";
 
 export default function Home({ pizzaList, admin }) {
@@ -13,8 +14,8 @@ export default function Home({ pizzaList, admin }) {
   return (
     <div className={styles.container}>
       <Featured />
-      
-      <Basket/>
+      <Popupmodal pizzaList={pizzaList} />
+      <Basket />
       <PizzaList pizzaList={pizzaList} />
       {!close && <Add setClose={setClose} />}
     </div>

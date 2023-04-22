@@ -8,6 +8,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/server": "^11.10.0",
+    "@mantine/core": "^6.0.8",
+    "@mantine/hooks": "^6.0.8",
+    "@mantine/modals": "^6.0.8",
+    "@mantine/next": "^6.0.8",
     "@paypal/react-paypal-js": "^7.5.0",
     "@reduxjs/toolkit": "^1.7.1",
     "axios": "^0.24.0",

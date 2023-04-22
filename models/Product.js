@@ -15,7 +15,12 @@ const ProductSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      maxlength: 200,
+      maxlength: 20,
+    },
+    subcategory: {
+      type: String,
+      required: true,
+      maxlength: 20,
     },
     img: {
       type: String,

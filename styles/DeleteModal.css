@@ -1,6 +1,6 @@
 .delete-modal {
   height: 100vh;
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
@@ -8,11 +8,25 @@
   z-index: 20;
   align-items: center;
   justify-content: center;
-  background-color: rgb(0, 0, 0, 0.3);
+  background-color: rgb(0, 0, 0, 0.5);
+}
+
+.popup-wrapper {
+  width: 40rem;
+  max-width: 95%;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: pop-up 1s ease-in-out;
 }
 
 .delete-wrapper {
-  width:350px;
+  width: 350px;
   max-width: 95%;
   background-color: white;
   border-radius: 0.5rem;
@@ -24,7 +38,24 @@
   position: relative;
 }
 
-.warning-img{
+.warning-img {
   width: 70px;
   height: 70px;
+}
+
+.modal-p {
+  font-style: italic;
+  font-weight: 600;
+  color: grey;
+  margin-top: 1rem;
+  font-size: 16px;
+}
+
+@keyframes pop-up {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

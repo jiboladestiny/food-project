@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-const PizzaCard = ({ pizza }) => {
+const PizzaCard = ({ pizza,customclass }) => {
   return (
-    <div className="col-md-6 col-lg-3 col-6">
+    <div className={customclass ? customclass : "col-md-6 col-lg-3 col-6"}>
       <Link href={`/product/${pizza._id}`} passHref>
         <div className="pizza-container">
           <div className="row align-items-center">

@@ -1,7 +1,7 @@
 import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Add from "../components/Add";
 import Basket from "../components/Basket";
 import Featured from "../components/Featured";
@@ -11,10 +11,47 @@ import styles from "../styles/Home.module.css";
 
 export default function Home({ pizzaList, admin }) {
   const [close, setClose] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [random, setRandom] = useState([]);
+
+  useEffect(() => {
+    const hasTimerTriggered = localStorage.getItem("hasTimerTriggered");
+
+    if (!hasTimerTriggered) {
+      const timer = setTimeout(() => {
+        const shuffledArr = pizzaList.sort(() => Math.random() - 0.5);
+
+        // Get the first 3 elements of the shuffled array
+        const randomThree = shuffledArr.slice(0, 2);
+        setRandom(randomThree);
+        setModalVisible(true);
+        localStorage.setItem("hasTimerTriggered", "true");
+      }, 15000);
+
+      return () => clearTimeout(timer);
+    }
+
+    // Set the localStorage item to null every 6 hours
+    const clearLocalStorage = setInterval(() => {
+      localStorage.setItem("myLocalStorageItem", null);
+    }, 6 * 60 * 60 * 1000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(clearLocalStorage);
+  }, [pizzaList]);
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <div className={styles.container}>
       <Featured />
-      <Popupmodal pizzaList={pizzaList} />
+      <Popupmodal
+        pizzaList={random}
+        show={modalVisible}
+        onCloseModal={handleCloseModal}
+      />
       <Basket />
       <PizzaList pizzaList={pizzaList} />
       {!close && <Add setClose={setClose} />}

@@ -21,14 +21,14 @@ export default function Home({ pizzaList, admin }) {
       const timer = setTimeout(() => {
         const shuffledArr = pizzaList.sort(() => Math.random() - 0.5);
 
-        // Get the first 3 elements of the shuffled array
+        // Get the first 2 elements of the shuffled array
         const randomThree = shuffledArr.slice(0, 2);
         setRandom(randomThree);
         setModalVisible(true);
         localStorage.setItem("hasTimerTriggered", "true");
-      }, 15000);
+      }, 10000);
 
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer); 
     }
 
     // Set the localStorage item to null every 6 hours

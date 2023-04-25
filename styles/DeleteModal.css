@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  animation: pop-up 1s ease-in-out;
+  animation: pop-up 0.3s ease-in-out;
 }
 
 .delete-wrapper {

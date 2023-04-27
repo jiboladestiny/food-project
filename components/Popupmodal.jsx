@@ -1,36 +1,29 @@
 
-import { useState } from 'react'
-import PizzaCard from './PizzaCard';
-
-
-const Popupmodal = ({ pizzaList, show, onCloseModal }) => {
-
-  const closeClick = () => {
-    onCloseModal(); 
-  };
-
-  return (
-    <>
-      {show && (
-        <div className="delete-modal">
-          <div className="popup-wrapper">
-            <div className="row gx-4">
-              {pizzaList.map((pizza) => (
-                <PizzaCard customclass="col-6" key={pizza._id} pizza={pizza} />
-              ))}
-            </div>
-            <p className="modal-p">
-              Try this freshly prepared food if you have not found anything you
-              like yet.
-            </p>
-            <button onClick={closeClick} className="btn btn-dark">
-              Continue ordering
-            </button>
-          </div>
+const Popupmodal = ({children,cancelbtn, show, width,padding,closeModal }) => {
+return (
+  <>
+    {show && (
+      <div className="popup-modal">
+        <div
+          className="popup-wrapper"
+          style={{ width: width, padding: padding }}
+        >
+          {cancelbtn && (
+            <span
+              className="cancel-btn"
+              onClick={() => {
+                closeModal();
+              }}
+            >
+              <i className="bx bx-x"></i>
+            </span>
+          )}
+          {children}
         </div>
-      )}
-    </>
-  );
+      </div>
+    )}
+  </>
+);
 };
 
 export default Popupmodal

@@ -10,19 +10,38 @@
   justify-content: center;
   background-color: rgb(0, 0, 0, 0.5);
 }
-
+.popup-modal {
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 20;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0, 0.5);
+  perspective: 1000px; /* Set the perspective value */
+}
 .popup-wrapper {
-  width: 40rem;
+  /* width: 40rem; */
   max-width: 95%;
   background-color: white;
   border-radius: 0.5rem;
-  padding: 1rem;
+  /* padding: 1rem; */
+  position: relative;
+  animation: pop-up 0.3s ease-in-out;
+  /* transform: translate(-5%, -5%)rotateY(-5deg); */
+box-shadow: 1px -1px 5px 2px rgba(0,0,0,0.41) inset;
+-webkit-box-shadow: 1px -1px 5px 2px rgba(0,0,0,0.41) inset;
+-moz-box-shadow: 1px -1px 5px 2px rgba(0,0,0,0.41) inset;
+}
+
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  animation: pop-up 0.3s ease-in-out;
 }
 
 .delete-wrapper {

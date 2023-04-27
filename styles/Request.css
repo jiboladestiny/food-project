@@ -1,0 +1,21 @@
+.request-wrapper{
+    margin-bottom:5rem;
+}
+.request{
+    background-color: whitesmoke;
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+
+.request p{
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.request button i {
+    margin-top: 0.2rem
+}
+
+.orders-input button i{
+    margin-top: 0.2rem;
+}

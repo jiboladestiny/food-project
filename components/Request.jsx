@@ -11,27 +11,92 @@ const Request = () => {
   const [foodNameError, setFoodNameError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const [availabilityError, setAvailabilityError] = useState(false);
-  const cancel=true
+  const cancel = true;
 
   const closeModal = () => {
     setModalVisible(false);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (emailError || foodNameError || descriptionError || availabilityError) {
-      // Don't submit the form if any of the fields have errors
-      return;
-    } else {
-      // handle form submission here
-      alert("form submitted succesfully");
-    }
-  };
+ const handleSubmit = async (event) => {
+   event.preventDefault();
+   let emailErr = false;
+   let foodNameErr = false;
+   let descriptionErr = false;
+   let availabilityErr = false;
+
+   if (!email) {
+     setEmailError(true);
+     emailErr = true;
+   } else {
+     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     setEmailError(!regex.test(email));
+     emailErr = !regex.test(email);
+   }
+
+   if (!foodName || foodName.length < 3) {
+     setFoodNameError(true);
+     foodNameErr = true;
+   } else {
+     setFoodNameError(false);
+     foodNameErr = false;
+   }
+
+   if (!description || description.length < 10) {
+     setDescriptionError(true);
+     descriptionErr = true;
+   } else {
+     setDescriptionError(false);
+     descriptionErr = false;
+   }
+
+   if (!availability) {
+     setAvailabilityError(true);
+     availabilityErr = true;
+   } else {
+     setAvailabilityError(false);
+     availabilityErr = false;
+   }
+
+   if (!emailErr && !foodNameErr && !descriptionErr && !availabilityErr) {
+     // handle form submission here
+     // alert("form submitted successfully");
+  
+    fetch("/api/request", {
+      method: "POST",
+      body: JSON.stringify({ email, foodName, description, availability }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+         
+        } else {
+          throw new Error("Failed to send email");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        // setError(error.message);
+        console.error(error);
+      });
+   }
+ };
+
 
   return (
     <div className="row justify-content-center request-wrapper">
       <div className="col-lg-6 col-10">
-        <Popupmodal show={modalVisible} closeModal={closeModal} width="30rem" padding="1.5rem" cancelbtn={cancel}>
+        <Popupmodal
+          show={modalVisible}
+          closeModal={closeModal}
+          width="30rem"
+          padding="1.5rem"
+          cancelbtn={cancel}
+        >
           <div className="orders-input">
             <h4 className="mb-3">Request Form</h4>
             <form onSubmit={handleSubmit}>

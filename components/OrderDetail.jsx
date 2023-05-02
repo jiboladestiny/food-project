@@ -17,7 +17,7 @@ const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
 
     fetch("/api/sendEmail", {
       method: "POST",
-      body: JSON.stringify({ customer, address, telephone, product,mail }),
+      body: JSON.stringify({ customer, address, telephone, product, mail }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -38,9 +38,9 @@ const OrderDetail = ({ total, createOrder, closeOrder, product, spinner }) => {
       });
   };
 
-  const closeClick = () => {
-    closeOrder();
-  };
+ const closeClick = () => {
+   closeOrder();
+ };
  const handleEmailBlur = () => {
    if (mail && !isValidEmail(mail)) {
      setError("Please enter a valid email address.");

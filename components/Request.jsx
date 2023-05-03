@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Popupmodal from "./Popupmodal";
+import { ToastContainer, toast } from "react-toastify";
 
 const Request = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -11,84 +12,87 @@ const Request = () => {
   const [foodNameError, setFoodNameError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const [availabilityError, setAvailabilityError] = useState(false);
+
   const cancel = true;
 
   const closeModal = () => {
     setModalVisible(false);
   };
 
- const handleSubmit = async (event) => {
-   event.preventDefault();
-   let emailErr = false;
-   let foodNameErr = false;
-   let descriptionErr = false;
-   let availabilityErr = false;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    let emailErr = false;
+    let foodNameErr = false;
+    let descriptionErr = false;
+    let availabilityErr = false;
 
-   if (!email) {
-     setEmailError(true);
-     emailErr = true;
-   } else {
-     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-     setEmailError(!regex.test(email));
-     emailErr = !regex.test(email);
-   }
+    if (!email) {
+      setEmailError(true);
+      emailErr = true;
+    } else {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setEmailError(!regex.test(email));
+      emailErr = !regex.test(email);
+    }
 
-   if (!foodName || foodName.length < 3) {
-     setFoodNameError(true);
-     foodNameErr = true;
-   } else {
-     setFoodNameError(false);
-     foodNameErr = false;
-   }
+    if (!foodName || foodName.length < 3) {
+      setFoodNameError(true);
+      foodNameErr = true;
+    } else {
+      setFoodNameError(false);
+      foodNameErr = false;
+    }
 
-   if (!description || description.length < 10) {
-     setDescriptionError(true);
-     descriptionErr = true;
-   } else {
-     setDescriptionError(false);
-     descriptionErr = false;
-   }
+    if (!description || description.length < 10) {
+      setDescriptionError(true);
+      descriptionErr = true;
+    } else {
+      setDescriptionError(false);
+      descriptionErr = false;
+    }
 
-   if (!availability) {
-     setAvailabilityError(true);
-     availabilityErr = true;
-   } else {
-     setAvailabilityError(false);
-     availabilityErr = false;
-   }
+    if (!availability) {
+      setAvailabilityError(true);
+      availabilityErr = true;
+    } else {
+      setAvailabilityError(false);
+      availabilityErr = false;
+    }
 
-   if (!emailErr && !foodNameErr && !descriptionErr && !availabilityErr) {
-     // handle form submission here
-     // alert("form submitted successfully");
-  
-    fetch("/api/request", {
-      method: "POST",
-      body: JSON.stringify({ email, foodName, description, availability }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-         
-        } else {
-          throw new Error("Failed to send email");
-        }
+    if (!emailErr && !foodNameErr && !descriptionErr && !availabilityErr) {
+      // handle form submission here
+      // alert("form submitted successfully");
+
+      fetch("/api/request", {
+        method: "POST",
+        body: JSON.stringify({ email, foodName, description, availability }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        // setError(error.message);
-        console.error(error);
-      });
-   }
- };
-
+        .then((response) => {
+          if (response.ok) {
+              toast.success("Request delivered successfully");
+              closeModal();
+            return response.json();
+          } else {
+            throw new Error("Failed to send email");
+          }
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          // setError(error.message);
+          console.error(error);
+        });
+    }
+  };
 
   return (
     <div className="row justify-content-center request-wrapper">
+      <ToastContainer autoClose={1000} />
+
       <div className="col-lg-6 col-10">
         <Popupmodal
           show={modalVisible}

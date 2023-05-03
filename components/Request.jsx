@@ -12,6 +12,7 @@ const Request = () => {
   const [foodNameError, setFoodNameError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const [availabilityError, setAvailabilityError] = useState(false);
+  const [spinner, setSpinner] = useState(true);
 
   const cancel = true;
 
@@ -60,8 +61,7 @@ const Request = () => {
     }
 
     if (!emailErr && !foodNameErr && !descriptionErr && !availabilityErr) {
-      // handle form submission here
-      // alert("form submitted successfully");
+      setSpinner(true);
 
       fetch("/api/request", {
         method: "POST",
@@ -72,8 +72,9 @@ const Request = () => {
       })
         .then((response) => {
           if (response.ok) {
-              toast.success("Request delivered successfully");
-              closeModal();
+            toast.success("Request delivered successfully");
+            closeModal();
+            setSpinner(false);
             return response.json();
           } else {
             throw new Error("Failed to send email");
@@ -83,7 +84,7 @@ const Request = () => {
           console.log(data);
         })
         .catch((error) => {
-          // setError(error.message);
+          setSpinner(false);
           console.error(error);
         });
     }
@@ -200,9 +201,19 @@ const Request = () => {
                   type="submit"
                   className="btn btn-dark"
                   onClick={handleSubmit}
+                  disabled={spinner}
                 >
                   <div className="d-flex align-items-center">
-                    Submit <i className="bx ms-1 bxs-chevrons-right"></i>
+                    Submit{" "}
+                    {!spinner && <i className="bx ms-1 bxs-chevrons-right"></i>}
+                    {spinner && (
+                      <div
+                        className="spinner-border ms-1 text-light spinner-border-sm"
+                        role="status"
+                      >
+                        <span className="visually-hidden">Loading...</span>
+                      </div>
+                    )}
                   </div>
                 </button>
               </div>

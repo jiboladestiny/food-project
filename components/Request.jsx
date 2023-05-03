@@ -12,7 +12,7 @@ const Request = () => {
   const [foodNameError, setFoodNameError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const [availabilityError, setAvailabilityError] = useState(false);
-  const [spinner, setSpinner] = useState(true);
+  const [spinner, setSpinner] = useState(false);
 
   const cancel = true;
 
